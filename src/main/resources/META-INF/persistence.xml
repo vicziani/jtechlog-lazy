@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="lazyPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <class>jtechlog.lazy.service.Employee</class>
+        <class>jtechlog.lazy.service.Phone</class>
+        <properties>
+            <property name="eclipselink.weaving" value="static"/>
+            <property name="eclipselink.cache.shared.default" value="false"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
