@@ -1,6 +1,6 @@
 package jtechlog.lazy.service;
 
-import javax.annotation.Generated;
+
 import javax.persistence.*;
 
 @Entity

@@ -8,8 +8,8 @@
 <ul>
     <c:forEach var="employee" items="${employees}">
 
-        <a href="<c:url value="/employee.html?id=${employee.id}" />">${employee.name}</a>
-        [ <a href="<c:url value="/editEmployee.html?id=${employee.id}" />">edit</a> ]
+        <p><a href="<c:url value="/employee.html?id=${employee.id}" />">${employee.name}</a>
+        [ <a href="<c:url value="/editEmployee.html?id=${employee.id}" />">edit</a> ]</p>
         
         <p>${employee.cv}</p>
         <ul>
