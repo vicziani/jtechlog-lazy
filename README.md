@@ -3,10 +3,10 @@
 
 Ez a program a JTechLog (<http://www.jtechlog.hu>) blog "JPA lazy loading" cikkéhez készült példaprogram. 
 Prezentálja a JPA lazy loading-ot EclipseLink és Hibernate perzistence provider esetén. Kétrétegű alkalmazás, 
-JPA perzisztens réteggel és Spring MVC  web réteggel. Maven-nel build-elhető, és a letöltést követően a 
-'mvn jetty:run' paranccsal futtatható. 
+JPA perzisztens réteggel és Spring MVC  web réteggel. Mavennel build-elhető, és a letöltést követően a 
+`mvn jetty:run` paranccsal futtatható. 
 
-Alapban EclipseLink-re van állítva, a Hibernate használatához a megjegyzésbe tett részeket kell cserélni.
+Alapban EclipseLinkre van állítva, a Hibernate használatához a megjegyzésbe tett részeket kell cserélni.
 
 Felhasznált technológiák: Spring, JSP, JSTL, JPA, EclipseLink, Hibernate,
 HSQLDB, SLF4J, Maven, Jetty
