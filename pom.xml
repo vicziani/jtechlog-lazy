@@ -11,6 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <eclipselink.version>2.6.0</eclipselink.version>
         <!-- <hibernate.version>4.3.9.Final</hibernate.version> -->
     </properties>
 
@@ -41,7 +42,7 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
-            <version>2.6.0</version>
+            <version>${eclipselink.version}</version>
         </dependency>
 
         <dependency>
@@ -133,21 +134,30 @@
             <!-- http://code.google.com/p/eclipselink-staticweave-maven-plugin/ -->
             <!-- Ant task: http://wiki.eclipse.org/Using_EclipseLink_JPA_Extensions_%28ELUG%29#How_to_Configure_Static_Weaving_for_JPA_Entities -->
             <!-- Dinamikus új Tomcat osztálybetöltővel: http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/aop.html#aop-aj-ltw-environments -->
+            <!-- au.com.alderaan:eclipselink-staticweave-maven-plugin régi EclipseLink-et használt, nem működött. -->
             <plugin>
-                <groupId>au.com.alderaan</groupId>
-                <artifactId>eclipselink-staticweave-maven-plugin</artifactId>
-                <version>1.0.4</version>
+                <groupId>de.empulse.eclipselink</groupId>
+                <artifactId>staticweave-maven-plugin</artifactId>
+                <version>1.0.0</version>
                 <executions>
                     <execution>
+                        <phase>process-classes</phase>
                         <goals>
                             <goal>weave</goal>
                         </goals>
-                        <phase>process-classes</phase>
                          <configuration>
+                            <persistenceXMLLocation>META-INF/persistence.xml</persistenceXMLLocation>
                             <logLevel>ALL</logLevel>
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.persistence</groupId>
+                        <artifactId>org.eclipse.persistence.jpa</artifactId>
+                        <version>${eclipselink.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <!-- http://wiki.eclipse.org/Using_EclipseLink_JPA_Extensions_%28ELUG%29#eclipselink.weaving -->
             <!-- If you disable weaving then any LAZY OneToOne or ManyToOne relationship will be treated as EAGER.  -->

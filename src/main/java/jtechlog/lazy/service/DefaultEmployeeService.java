@@ -5,12 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUtil;
+import javax.persistence.Subgraph;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DefaultEmployeeService implements EmployeeService {
@@ -30,13 +33,26 @@ public class DefaultEmployeeService implements EmployeeService {
                 LOGGER.debug(e.getPhones().get(0).getNumber());
             }
         }*/
+
+        /*EntityGraph<Employee> graph = em.createEntityGraph(Employee.class);
+        graph.addAttributeNodes("name");
+        Subgraph<Phone> subgraph = graph.addSubgraph("phones", Phone.class);
+        subgraph.addAttributeNodes("type");
+        List<Employee> employees = em.createNamedQuery("listEmployees", Employee.class)
+                .setHint("javax.persistence.fetchgraph", graph)
+                .getResultList();*/
+
         return employees;
     }
 
     @Override
     public Employee findEmployeeById(long id) {
         return em.find(Employee.class, id);
-        // return em.createNamedQuery("findEmployeeById", Employee.class).setParameter("id", id).getSingleResult();
+        //return em.createNamedQuery("findEmployeeById", Employee.class).setParameter("id", id).getSingleResult();
+
+//        Map hints = new HashMap();
+//        hints.put("javax.persistence.fetchgraph", em.getEntityGraph("graph.Employee.phones"));
+//        return em.find(Employee.class, id, hints);
     }
 
     @Override

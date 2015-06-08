@@ -6,9 +6,14 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        // @NamedQuery(name = "listEmployees", query = "select e from Employee e")
-        @NamedQuery(name = "listEmployees", query = "select distinct e from Employee e join fetch e.phones"),
-        // @NamedQuery(name = "findEmployeeById", query = "select distinct e from Employee e join fetch e.phones where e.id = :id")
+        @NamedQuery(name = "listEmployees", query = "select e from Employee e"),
+        //@NamedQuery(name = "listEmployees", query = "select distinct e from Employee e join fetch e.phones"),
+        //@NamedQuery(name = "findEmployeeById", query = "select distinct e from Employee e join fetch e.phones where e.id = :id")
+})
+@NamedEntityGraph(name = "graph.Employee.phones",
+        attributeNodes = @NamedAttributeNode("phones"),
+        subgraphs = {
+            @NamedSubgraph(name = "phones", attributeNodes = {@NamedAttributeNode("type")})
 })
 public class Employee implements Serializable {
     
